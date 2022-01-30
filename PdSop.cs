@@ -76,5 +76,61 @@ namespace USB_PD_Analyzer
 				return SopType.Error;
 			}
 		}
+
+		public string GetSopTypeString()
+		{
+			switch (this.Sop)
+			{
+				case SopType.Sop:
+					return "SOP";
+				case SopType.SopPrime:
+					return "SOP'";
+				case SopType.SopDoublePrime:
+					return "SOP''";
+				case SopType.SopPrimeDebug:
+					return "SOP'_Debug";
+				case SopType.SopDoublePrimeDebug:
+					return "SOP''_Debug";
+				case SopType.CableReset:
+					return "Cable Reset";
+				case SopType.HardReset:
+					return "Hard Reset";
+				default:
+					return "Error";
+			}
+		}
+
+		public string GetSopString()
+		{
+			string[] ss = new string[4];
+
+			for (int i = 0; i < 4; i++)
+			{
+				switch (this.value[i])
+				{
+					case K_code.Sync_1:
+						ss[i] = "Sync-1";
+						break;
+					case K_code.Sync_2:
+						ss[i] = "Sync-2";
+						break;
+					case K_code.Sync_3:
+						ss[i] = "Sync-3";
+						break;
+					case K_code.RST_1:
+						ss[i] = "RST-1";
+						break;
+					case K_code.RST_2:
+						ss[i] = "RST-2";
+						break;
+					default:
+						ss[i] = "Error";
+						break;
+
+				}
+			}
+
+			return string.Join(" ", ss);
+		}
 	}
 }

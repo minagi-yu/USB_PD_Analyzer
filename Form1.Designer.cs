@@ -195,6 +195,7 @@
             this.timeLineHeader_Data,
             this.timeLineHeader_EOP});
 			this.timeLine.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.timeLine.FullRowSelect = true;
 			this.timeLine.HideSelection = false;
 			this.timeLine.Location = new System.Drawing.Point(0, 0);
 			this.timeLine.MultiSelect = false;
@@ -203,6 +204,7 @@
 			this.timeLine.TabIndex = 0;
 			this.timeLine.UseCompatibleStateImageBehavior = false;
 			this.timeLine.View = System.Windows.Forms.View.Details;
+			this.timeLine.SelectedIndexChanged += new System.EventHandler(this.TimeLine_SelectedIndexChanged);
 			// 
 			// timeLineHeader_N
 			// 
@@ -212,10 +214,12 @@
 			// timeLineHeader_Preamble
 			// 
 			this.timeLineHeader_Preamble.Text = "Preamble";
+			this.timeLineHeader_Preamble.Width = 119;
 			// 
 			// timeLineHeader_SOP
 			// 
 			this.timeLineHeader_SOP.Text = "SOP";
+			this.timeLineHeader_SOP.Width = 59;
 			// 
 			// timeLineHeader_SOPx
 			// 

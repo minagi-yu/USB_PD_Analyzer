@@ -20,10 +20,10 @@ namespace USB_PD_Analyzer
 			0xff, 0x0b, 0x07, 0xff
 		};
 
-		public byte[] preamble = new byte[8];
+		public byte[] preamble;
 		public PdSop sop;
 		public PdHeader header;
-		public List<PdDataObject> data = new List<PdDataObject>();
+		public List<PdDataObject> data;
 		public uint crc;
 		public byte eop;
 
@@ -46,6 +46,7 @@ namespace USB_PD_Analyzer
 			if (len < 8)
 				return;
 
+			preamble = new byte[8];
 			for (int i = 0; i < 8; i++)
 			{
 				preamble[i] = rawData[i];
@@ -75,6 +76,7 @@ namespace USB_PD_Analyzer
 				return;
 			}
 
+			data = new List<PdDataObject>();
 			for (int i = 0; i < header.NumberOfDataObjects; i++)
 			{
 				uint dataBinary = 0;
