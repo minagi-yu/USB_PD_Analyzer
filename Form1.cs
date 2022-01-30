@@ -66,15 +66,20 @@ namespace USB_PD_Analyzer
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            string line;
             try
             {
-                string line = serialPort.ReadLine();
+                line = serialPort.ReadLine();
 
                 BeginInvoke(new Action(() => serialConsole.AppendText(line + "\r\n")));
             }
             catch (Exception)
             {
+                return;
             }
+
+            PdPacket pdp = new PdPacket(line);
+
         }
 
 		private void ClearButton_Click(object sender, EventArgs e)
