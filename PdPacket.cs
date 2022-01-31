@@ -87,20 +87,20 @@ namespace USB_PD_Analyzer
 				if (header.MessageType == PdHeader.MessageTypes.Source_Capabilities || header.MessageType == PdHeader.MessageTypes.Sink_Capabilities)
 				{
 					PdPowerDataObject pdo = new PdPowerDataObject(dataBinary);
-					if (pdo.SourceType == PdPowerDataObject.SourceTypes.FixedSupply)
+					if (pdo.SupplyType == PdPowerDataObject.SourceTypes.FixedSupply)
 					{
 						if (header.MessageType == PdHeader.MessageTypes.Source_Capabilities)
 							data.Add(new PdSourceFixedSupplyPdo(dataBinary));
 						else
 							data.Add(new PdSinkFixedSupplyPdo(dataBinary));
 					}
-					else if (pdo.SourceType == PdPowerDataObject.SourceTypes.VariableSupply)
+					else if (pdo.SupplyType == PdPowerDataObject.SourceTypes.VariableSupply)
 					{
 						if (header.MessageType == PdHeader.MessageTypes.Source_Capabilities)
 							data.Add(new PdSourceVariableSupplyPdo(dataBinary));
 						else
 							data.Add(new PdSinkVariableSupplyPdo(dataBinary));
-					} else if (pdo.SourceType == PdPowerDataObject.SourceTypes.Battery)
+					} else if (pdo.SupplyType == PdPowerDataObject.SourceTypes.Battery)
 					{
 						if (header.MessageType == PdHeader.MessageTypes.Source_Capabilities)
 							data.Add(new PdSourceBatterySupplyPdo(dataBinary));

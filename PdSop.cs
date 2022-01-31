@@ -100,37 +100,37 @@ namespace USB_PD_Analyzer
 			}
 		}
 
-		public string GetSopString()
+		public IEnumerable<string> GetSopString()
 		{
-			string[] ss = new string[4];
+			List<string> ss = new List<string>();
 
 			for (int i = 0; i < 4; i++)
 			{
 				switch (this.value[i])
 				{
 					case K_code.Sync_1:
-						ss[i] = "Sync-1";
+						ss.Add("Sync-1");
 						break;
 					case K_code.Sync_2:
-						ss[i] = "Sync-2";
+						ss.Add("Sync-2");
 						break;
 					case K_code.Sync_3:
-						ss[i] = "Sync-3";
+						ss.Add("Sync-3");
 						break;
 					case K_code.RST_1:
-						ss[i] = "RST-1";
+						ss.Add("RST-1");
 						break;
 					case K_code.RST_2:
-						ss[i] = "RST-2";
+						ss.Add("RST-2");
 						break;
 					default:
-						ss[i] = "Error";
+						ss.Add("Error");
 						break;
 
 				}
 			}
 
-			return string.Join(" ", ss);
+			return ss;
 		}
 	}
 }

@@ -37,9 +37,10 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.analyzeButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.exportButton = new System.Windows.Forms.ToolStripButton();
 			this.importButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.statusBar = new System.Windows.Forms.StatusStrip();
 			this.statusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -62,7 +63,6 @@
 			this.detailViewHeader_Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.serialConsole = new System.Windows.Forms.TextBox();
 			this.serialPort = new System.IO.Ports.SerialPort(this.components);
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolBar.SuspendLayout();
 			this.statusBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -91,7 +91,7 @@
             this.clearButton});
 			this.toolBar.Location = new System.Drawing.Point(0, 0);
 			this.toolBar.Name = "toolBar";
-			this.toolBar.Size = new System.Drawing.Size(800, 34);
+			this.toolBar.Size = new System.Drawing.Size(972, 34);
 			this.toolBar.TabIndex = 0;
 			this.toolBar.Text = "toolStrip1";
 			// 
@@ -143,16 +143,6 @@
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
 			// 
-			// clearButton
-			// 
-			this.clearButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.clearButton.Image = ((System.Drawing.Image)(resources.GetObject("clearButton.Image")));
-			this.clearButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.clearButton.Name = "clearButton";
-			this.clearButton.Size = new System.Drawing.Size(55, 29);
-			this.clearButton.Text = "Clear";
-			this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
-			// 
 			// exportButton
 			// 
 			this.exportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -173,21 +163,36 @@
 			this.importButton.Text = "Import";
 			this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
 			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 34);
+			// 
+			// clearButton
+			// 
+			this.clearButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.clearButton.Image = ((System.Drawing.Image)(resources.GetObject("clearButton.Image")));
+			this.clearButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.clearButton.Name = "clearButton";
+			this.clearButton.Size = new System.Drawing.Size(55, 29);
+			this.clearButton.Text = "Clear";
+			this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
+			// 
 			// statusBar
 			// 
 			this.statusBar.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel1});
-			this.statusBar.Location = new System.Drawing.Point(0, 428);
+			this.statusBar.Location = new System.Drawing.Point(0, 610);
 			this.statusBar.Name = "statusBar";
-			this.statusBar.Size = new System.Drawing.Size(800, 22);
+			this.statusBar.Size = new System.Drawing.Size(972, 22);
 			this.statusBar.TabIndex = 1;
 			this.statusBar.Text = "statusStrip1";
 			// 
 			// statusLabel1
 			// 
 			this.statusLabel1.Name = "statusLabel1";
-			this.statusLabel1.Size = new System.Drawing.Size(0, 21);
+			this.statusLabel1.Size = new System.Drawing.Size(0, 15);
 			// 
 			// splitContainer1
 			// 
@@ -203,13 +208,14 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.serialConsole);
-			this.splitContainer1.Size = new System.Drawing.Size(800, 394);
-			this.splitContainer1.SplitterDistance = 252;
+			this.splitContainer1.Size = new System.Drawing.Size(972, 576);
+			this.splitContainer1.SplitterDistance = 368;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// splitContainer2
 			// 
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
 			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer2.Name = "splitContainer2";
 			// 
@@ -220,8 +226,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.detailView);
-			this.splitContainer2.Size = new System.Drawing.Size(800, 252);
-			this.splitContainer2.SplitterDistance = 436;
+			this.splitContainer2.Size = new System.Drawing.Size(972, 368);
+			this.splitContainer2.SplitterDistance = 477;
 			this.splitContainer2.TabIndex = 0;
 			// 
 			// timeLine
@@ -245,7 +251,7 @@
 			this.timeLine.Location = new System.Drawing.Point(0, 0);
 			this.timeLine.MultiSelect = false;
 			this.timeLine.Name = "timeLine";
-			this.timeLine.Size = new System.Drawing.Size(436, 252);
+			this.timeLine.Size = new System.Drawing.Size(477, 368);
 			this.timeLine.TabIndex = 0;
 			this.timeLine.UseCompatibleStateImageBehavior = false;
 			this.timeLine.View = System.Windows.Forms.View.Details;
@@ -315,10 +321,12 @@
             this.detailViewHeader_Name,
             this.detailViewHeader_Value});
 			this.detailView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.detailView.FullRowSelect = true;
 			this.detailView.HideSelection = false;
 			this.detailView.Location = new System.Drawing.Point(0, 0);
+			this.detailView.MultiSelect = false;
 			this.detailView.Name = "detailView";
-			this.detailView.Size = new System.Drawing.Size(360, 252);
+			this.detailView.Size = new System.Drawing.Size(491, 368);
 			this.detailView.TabIndex = 0;
 			this.detailView.UseCompatibleStateImageBehavior = false;
 			this.detailView.View = System.Windows.Forms.View.Details;
@@ -344,7 +352,7 @@
 			this.serialConsole.Name = "serialConsole";
 			this.serialConsole.ReadOnly = true;
 			this.serialConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.serialConsole.Size = new System.Drawing.Size(800, 138);
+			this.serialConsole.Size = new System.Drawing.Size(972, 204);
 			this.serialConsole.TabIndex = 0;
 			this.serialConsole.WordWrap = false;
 			// 
@@ -352,16 +360,11 @@
 			// 
 			this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort_DataReceived);
 			// 
-			// toolStripSeparator3
-			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 34);
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(972, 632);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.statusBar);
 			this.Controls.Add(this.toolBar);

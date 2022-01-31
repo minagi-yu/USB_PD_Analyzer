@@ -26,7 +26,7 @@ namespace USB_PD_Analyzer
 		}
 		public PdPowerDataObject(uint d) : base(d) { }
 
-		public SourceTypes SourceType => (SourceTypes)((dataObject >> 30) & 0x03);
+		public SourceTypes SupplyType => (SourceTypes)((dataObject >> 30) & 0x03);
 	}
 
 	internal class PdSourceFixedSupplyPdo : PdPowerDataObject
