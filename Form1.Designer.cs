@@ -35,7 +35,11 @@
 			this.comPortConnectButton = new System.Windows.Forms.ToolStripButton();
 			this.comPortDisonnectButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.analyzeButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
+			this.exportButton = new System.Windows.Forms.ToolStripButton();
+			this.importButton = new System.Windows.Forms.ToolStripButton();
 			this.statusBar = new System.Windows.Forms.StatusStrip();
 			this.statusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -58,6 +62,7 @@
 			this.detailViewHeader_Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.serialConsole = new System.Windows.Forms.TextBox();
 			this.serialPort = new System.IO.Ports.SerialPort(this.components);
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolBar.SuspendLayout();
 			this.statusBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -78,6 +83,11 @@
             this.comPortConnectButton,
             this.comPortDisonnectButton,
             this.toolStripSeparator1,
+            this.analyzeButton,
+            this.toolStripSeparator2,
+            this.exportButton,
+            this.importButton,
+            this.toolStripSeparator3,
             this.clearButton});
 			this.toolBar.Location = new System.Drawing.Point(0, 0);
 			this.toolBar.Name = "toolBar";
@@ -118,6 +128,21 @@
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
 			// 
+			// analyzeButton
+			// 
+			this.analyzeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.analyzeButton.Image = ((System.Drawing.Image)(resources.GetObject("analyzeButton.Image")));
+			this.analyzeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.analyzeButton.Name = "analyzeButton";
+			this.analyzeButton.Size = new System.Drawing.Size(77, 29);
+			this.analyzeButton.Text = "Analyze";
+			this.analyzeButton.Click += new System.EventHandler(this.AnalyzeButton_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
+			// 
 			// clearButton
 			// 
 			this.clearButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -127,6 +152,26 @@
 			this.clearButton.Size = new System.Drawing.Size(55, 29);
 			this.clearButton.Text = "Clear";
 			this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
+			// 
+			// exportButton
+			// 
+			this.exportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.exportButton.Image = ((System.Drawing.Image)(resources.GetObject("exportButton.Image")));
+			this.exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.exportButton.Name = "exportButton";
+			this.exportButton.Size = new System.Drawing.Size(67, 29);
+			this.exportButton.Text = "Export";
+			this.exportButton.Click += new System.EventHandler(this.ExportButton_Click);
+			// 
+			// importButton
+			// 
+			this.importButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.importButton.Image = ((System.Drawing.Image)(resources.GetObject("importButton.Image")));
+			this.importButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.importButton.Name = "importButton";
+			this.importButton.Size = new System.Drawing.Size(71, 29);
+			this.importButton.Text = "Import";
+			this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
 			// 
 			// statusBar
 			// 
@@ -142,7 +187,7 @@
 			// statusLabel1
 			// 
 			this.statusLabel1.Name = "statusLabel1";
-			this.statusLabel1.Size = new System.Drawing.Size(0, 15);
+			this.statusLabel1.Size = new System.Drawing.Size(0, 21);
 			// 
 			// splitContainer1
 			// 
@@ -307,6 +352,11 @@
 			// 
 			this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort_DataReceived);
 			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 34);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -366,6 +416,11 @@
 		private System.Windows.Forms.ColumnHeader timeLineHeader_SOP;
 		private System.Windows.Forms.ColumnHeader timeLineHeader_Header;
 		private System.Windows.Forms.ColumnHeader timeLineHeader_EOP;
+		private System.Windows.Forms.ToolStripButton analyzeButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripButton exportButton;
+		private System.Windows.Forms.ToolStripButton importButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 	}
 }
 

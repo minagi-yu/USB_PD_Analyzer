@@ -14,7 +14,6 @@ namespace USB_PD_Analyzer
 	public partial class Form1 : Form
 	{
 		List<PdPacket> packets = new List<PdPacket>();
-		int packetNumber = 0;
 
 		public Form1()
 		{
@@ -70,7 +69,6 @@ namespace USB_PD_Analyzer
 		private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
 		{
 			string line;
-			PdPacket packet;
 
 			try
 			{
@@ -82,18 +80,93 @@ namespace USB_PD_Analyzer
 			{
 				return;
 			}
+		}
 
-			packet = new PdPacket(line);
+		private void AnalyzeButton_Click(object sender, EventArgs e)
+		{
+			int i = 0;
+			List<ListViewItem> listViewItem = new List<ListViewItem>();
 
-			packets.Add(packet);
-			BeginInvoke(new Action(() => AddTimeLine(packet)));
+			packets.Clear();
+			foreach (string line in serialConsole.Lines)
+			{
+				if (line == "")
+					continue;
+
+				packets.Add(new PdPacket(line));
+			}
+
+			timeLine.Items.Clear();
+			foreach (var packet in packets)
+			{
+				listViewItem.Add(AddTimeLine(packet, ++i));
+			}
+
+			timeLine.Items.AddRange(listViewItem.ToArray());
+			timeLine.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+		}
+
+		private void ExportButton_Click(object sender, EventArgs e)
+		{
+			string fileName;
+
+			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+			{
+				saveFileDialog.Filter = "Text (*.txt)|*.txt";
+
+				DialogResult dialogResult = saveFileDialog.ShowDialog(this);
+
+				if (dialogResult == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				fileName = saveFileDialog.FileName;
+			}
+
+			try
+			{
+				System.IO.File.WriteAllText(fileName, serialConsole.Text);
+			}
+			catch (Exception ex)
+			{
+				statusBar.Text = ex.Message;
+			}
+			
+		}
+
+		private void ImportButton_Click(object sender, EventArgs e)
+		{
+			string text;
+
+			using (OpenFileDialog openFileDialog = new OpenFileDialog())
+			{
+				openFileDialog.Filter = "Text (*.txt)|*.txt";
+
+				DialogResult dialogResult = openFileDialog.ShowDialog(this);
+
+				if (dialogResult == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				text = System.IO.File.ReadAllText(openFileDialog.FileName);
+			}
+
+			try
+			{
+				serialConsole.Text = text;
+			}
+			catch (Exception ex)
+			{
+				statusBar.Text = ex.Message;
+			}
 		}
 
 		private void ClearButton_Click(object sender, EventArgs e)
 		{
 			serialConsole.Clear();
 			packets.Clear();
-			packetNumber = 0;
 			timeLine.Items.Clear();
 		}
 
@@ -102,12 +175,10 @@ namespace USB_PD_Analyzer
 
 		}
 
-		private void AddTimeLine(PdPacket packet)
+		private ListViewItem AddTimeLine(PdPacket packet, int number)
 		{
 			List<string> row = new List<string>();
-
-			packetNumber++;
-			row.Add(packetNumber.ToString());
+			ListViewItem listViewItem = new ListViewItem(number.ToString());
 
 			if (packet.preamble == null)
 			{
@@ -142,7 +213,16 @@ namespace USB_PD_Analyzer
 				row.Add(packet.header.MessageID.ToString());
 				if (packet.header is PdHeaderSop)
 				{
-					row.Add(((PdHeaderSop)packet.header).PortPowerRole == 0 ? "Sink" : "Source");
+					if (((PdHeaderSop)packet.header).PortPowerRole == 0)
+					{
+						row.Add("Sink");
+						listViewItem.BackColor = Color.White;
+					}
+					else
+					{
+						row.Add("Source");
+						listViewItem.BackColor = Color.LightCyan;
+					}
 					row.Add(((PdHeaderSop)packet.header).PortDataRole == 0 ? "UFP" : "DFP");
 				} else if (packet.header is PdHeaderSopPrime)
 				{
@@ -174,7 +254,9 @@ namespace USB_PD_Analyzer
 
 			row.Add(packet.eop == 0x16 ? "EOP" : "Error");
 
-			timeLine.Items.Add(new ListViewItem(row.ToArray()));
+			listViewItem.SubItems.AddRange(row.ToArray());
+
+			return listViewItem;
 		}
 	}
 }
